@@ -2,7 +2,6 @@
 import wollok.game.*
 
 object lionel {
-	
 	var property position = game.at(3,5)
 	var property camisetaTitular = true  
 	
@@ -13,11 +12,9 @@ object lionel {
 			return "lionel-suplente.png"
 		}
 	}
-
 	method retroceder() {
 		position = game.at(0.max(position.x() - 1), position.y()) 
 	}
-	
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
@@ -50,9 +47,21 @@ object lionel {
 	
 }
 
-
 object pelota {
-	const property image="pelota.png"
+	const property image = "pelota.png"
 	var property position = game.at(5,5)
 
+	method irAlInicio() {
+		position = game.at(0,0)
+	}
+
+	method taquito() {
+		if (position.equals(lionel.position())) {
+			var destino = (position.x() - 2).max(0)
+			position = game.at(destino, position.y())
+		}
+		else {
+			game.say(lionel, "No tengo la pelota!")
+		}
+	}
 }

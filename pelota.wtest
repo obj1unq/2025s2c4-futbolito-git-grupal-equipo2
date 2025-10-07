@@ -1,9 +1,32 @@
 import wollok.game.*
+import pgmProgram.*
 import objetos.*
 
 describe "pelota" {
   test "Pelota va al inicio y queda en la posicion (0,0)" {
     pelota.irAlInicio()
     assert.equals(game.at(0,0), pelota.position())
+  }
+
+  test "taquito cuando Lionel tiene la pelota" {
+    lionel.position(game.at(3, 5))
+    pelota.position(game.at(3, 5))
+    pelota.taquito()
+    assert.equals(game.at(1, 5), pelota.position())
+  }
+  
+  test "taquito cuando la pelota está al borde izquierdo" {
+    lionel.position(game.at(1, 2))
+    pelota.position(game.at(1, 2))
+    pelota.taquito()
+    assert.equals(game.at(0, 2), pelota.position())
+  }
+
+  test "sin la pelota, taquito NO se ejecuta" {
+    lionel.position(game.at(3, 5))
+    pelota.position(game.at(4, 5))
+    const posicionOriginal = pelota.position()
+    pelota.taquito()
+    assert.equals(posicionOriginal, pelota.position())
   }
 }
