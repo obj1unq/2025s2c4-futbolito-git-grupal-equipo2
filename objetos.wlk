@@ -16,11 +16,24 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
+
+	method levantarla(){
+		self.validarLevantarla()
+		pelota.position().y(position.y() + 1)
+		game.schedule(2000, { => pelota.position().y(position.y()) })
+	}
+
+	method validarLevantarla(){
+		if( not (game.uniqueCollider(pelota) == self)){
+			self.error("Lionel no esta sobre la pelota")
+		}
+	}
 	
 }
 
 
 object pelota {
 	const property image="pelota.png"
-	var property position = game.at(5,5)	
+	var property position = game.at(5,5)
+
 }
