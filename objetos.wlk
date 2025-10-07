@@ -4,9 +4,14 @@ import wollok.game.*
 object lionel {
 	
 	var property position = game.at(3,5)
+	var property camisetaTitular = true  
 	
 	method image() {
-		return "lionel-titular.png"
+		if(camisetaTitular) {
+			return "lionel-titular.png"
+		} else {
+			return "lionel-suplente.png"
+		}
 	}
 
 	method retroceder() {
@@ -32,6 +37,19 @@ object lionel {
             self.error("Leo y la pelota no pueden estar en la misma columna")
         }
     }
+	method cambiarCamiseta() {
+		self.validarBorde()
+		camisetaTitular = !camisetaTitular
+			  
+	}
+	
+	method validarBorde() {
+		if(not (position.x() == 0)) {
+			self.error("Lionel no esta en el borde izquierdo")
+		}
+	  
+	}
+	
 }
 
 

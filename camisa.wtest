@@ -1,0 +1,11 @@
+import objetos.*
+import wollok.game.*
+
+describe "camisa" {
+  test "camisa de titular cambia a suplente si Lionel esta al borde izquierdo" {
+    lionel.position(game.at(0,lionel.position().y()))
+    lionel.cambiarCamiseta()
+    assert.equals("lionel-suplente.png", lionel.image())
+  }
+}
+
