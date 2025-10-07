@@ -22,7 +22,7 @@ object lionel {
     }
 
 	method irSaqueLateral() {
-		//self.validarX()
+		self.validarX()
 		self.irAlBordeInferior()
 		pelota.irAlBordeInferior()
 	}
